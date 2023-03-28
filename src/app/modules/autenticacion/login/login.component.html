@@ -1,0 +1,22 @@
+<div class="container" layout-fill>
+  <div class="card">   
+    <h1>Login ⚽  🏟️  🥅</h1>
+    <form class="formulario">
+      <mat-form-field class="full-width">
+        <mat-label>Correo electronico</mat-label>
+        <input [(ngModel)]="email" type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+               placeholder="Ex. juan@gmail.com">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor ingrese un correo válido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Contraseña*</mat-label>
+        <input [(ngModel)]="contrasenia" type="password" matInput>
+      </mat-form-field>
+    </form>
+    <p class="small-text">¿No tienes cuenta? <a href="register">Registrate</a></p>
+    <p class="small-text">¿Olvidaste la contraseña? <a href="recuperarContrasenia">Recuperar contraseña</a></p>
+    <button class="boton" mat-raised-button color="primary" (click)="login()">Iniciar sesión</button>
+  </div>
+</div>

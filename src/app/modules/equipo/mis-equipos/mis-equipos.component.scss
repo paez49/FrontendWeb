@@ -1,0 +1,79 @@
+
+.teams{
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  padding: auto;
+  a{
+    margin-bottom: 30px;
+    color: rgb(224, 224, 224);
+    font-size: 40px;
+  }
+}
+
+.team {
+  color:rgba(0, 0, 0, 0.8);
+  display: flex;
+  text-align: center;
+  background-color: rgba(248, 246, 246, 0.7);
+  backdrop-filter: blur(5px);
+  transition: background-color 0.5s ease;
+  h3{
+    margin: 10px;
+    font-family: 'Bangers', cursive;
+  }
+}
+.teamDisplay {
+  width: 500px;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 0px 1.8rem;
+  align-items: center;
+  h3{
+    margin: 10px;
+    font-family: 'Bangers', cursive;
+  }
+}
+.myTeams{
+    width: auto;
+    display: grid;
+    text-align:center;
+    align-items: center;
+    gap: 3rem;
+    border-radius: 0.7rem;
+    margin: 1.8rem auto;
+}
+.addTeam{
+  border-radius: 5px;
+  width: auto;
+  max-width: 100%;
+  width: 230px;
+  background: #83CE95;
+  color: white;
+  margin: 50px 0px;
+}
+
+
+
+@media only screen and (max-width: 1099px) {
+  .myTeams{
+    grid-template-columns: repeat(1,100%);
+
+    }
+  .teamDisplay{
+    box-shadow: 0 0px 50px rgba(0, 0, 0, 0.8);
+  }
+}
+@media only screen and (min-width:1100px){
+  .myTeams{
+    grid-template-columns: repeat(2,50%);
+    }
+  .teamDisplay{
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  }
+  .teamDisplay:hover {
+    background-color: red;
+}
+}
