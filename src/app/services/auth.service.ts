@@ -12,9 +12,12 @@ export class AuthService {
   constructor() {
   }
 
-  logout(): void {
-    this.isLogged = true;
+  logout():void{
+    this.isLogged = false;
+  }
 
+  logIn():void{
+    this.isLogged = true;
   }
 
   isLoggedIn(): boolean {
