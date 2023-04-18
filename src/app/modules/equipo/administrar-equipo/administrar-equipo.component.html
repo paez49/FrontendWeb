@@ -84,6 +84,7 @@
   <div class="calendario">
     <p-calendar [(ngModel)]="date7" [showTime]="true" inputId="time"></p-calendar>
     <mat-card-actions>
+      <button mat-button (click)="onAceptar()" class="greenButtonMargin">Verificar</button>
       <button mat-button (click)="onAceptar()" class="greenButtonMargin">Reservar</button>
     </mat-card-actions>
   </div>
