@@ -6,6 +6,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+
 import { NewTeamComponent } from './new-team/new-team.component';
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { NewTeamComponent } from './new-team/new-team.component';
     RadioButtonModule,
     MatSlideToggleModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatCardModule
   ]
 })
 export class EquipoModule { }

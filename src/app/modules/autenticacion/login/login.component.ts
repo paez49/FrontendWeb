@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,6 +25,6 @@ export class LoginComponent {
     console.log(this.email)
     console.log(this.contrasenia)
     console.log("INICIO SESION")
-    
+
   }
 }

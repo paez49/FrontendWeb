@@ -13,7 +13,10 @@ export class AuthService {
 
   logout():void{
     this.isLogged = false;
+  }
 
+  logIn():void{
+    this.isLogged = true;
   }
   isLoggedIn():boolean{
     return this.isLogged;
