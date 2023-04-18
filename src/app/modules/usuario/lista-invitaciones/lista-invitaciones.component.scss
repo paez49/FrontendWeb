@@ -1,82 +1,80 @@
-.tablaequipos{
-    min-height: 20vh;
-    display:flex;
-    justify-content: center;
+
+$primary-color: hsla(0, 0%, 0%, 0.103);
+$secondary-color:hsla(0, 1%, 33%, 0.158);
+$accent-color: hsla(128, 83%, 37%, 0.336);
+$font-color: hsl(0, 0%, 100%);
+
+  h1{
+    size: 1000px;
+    display: flex;
     align-items: center;
-    border-color: black;
-    align-content: center;
-}
-.cuadro{
-  background-color: #ddd;
-  flex-direction:initial;
-}
-.columnastablas{
-  border-collapse: collapse;
-  border: 1px solid black;
-  background-color: green;
-}
-.titulo{
-  size: 1000px;
-  display: flex;
-  align-items: center;
-  min-height: 40vh;
-  justify-content: center;
-  font-size: 100px;
-  color: #ddd;
-  font-weight: bold ;
-}
-.botones{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin-right: 10px;
-}
-.botones button {
-  margin-bottom: 10px;
-  background-color: #ddd;
-}
-.equipo{
-  justify-content: center;
-  border-color: #555;
-  border-style: groove;
-  width: 60%;
-  height: 60%;
-  font-size: 16px;
-  border-collapse: collapse;
-  border: 1px solid black;
-}
-ng-container{
-  border-style: groove;
-  border-color: black;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-    border-color: black;
+    min-height: 40vh;
+    justify-content: center;
+    font-size: 100px;
+    color: #ddd;
+    font-weight: bold ;
   }
-  
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+  .base{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
   }
-  
-  th {
-    background-color: #f2f2f2;
-    color: #555;
-  }
-.mat-table {
-    border-collapse: collapse;
-    border: 10px solid black;
-    background-color: green;
-  }
-  
-.mat-header-cell,
-.mat-cell {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+  .base .tablaequipos {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    .equipo {
+      display: flex;
+      font-size: 1.5rem;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    .tabla {
+      width: 100%;
+      margin: 2rem 0;
+      border-radius: 10px;
+      border-collapse: collapse;
+      background-color: #ffffff7a;
+      border: 23px solid #616161;
+      color:#fff;
+    }
+
+    }
+    .greenButtonMargin{
+      margin-right: 20px;
+      margin-left: 20px;
+    background-color: rgb(82, 137, 0);
+    color: #fff;
+    color: $font-color;
+      border: none;
+      border-radius: 5px;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($accent-color, 10%);
+      }}
+    .redButtonMargin{
+    margin-right: 20px;
+    margin-left: 20px;
+  background-color: rgb(207, 0, 0);
+  color: #fff;
+  color: $font-color;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken( rgb(207, 0, 0), 10%);
+    }}
+
 }
-  

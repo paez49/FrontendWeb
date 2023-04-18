@@ -14,7 +14,7 @@ export class ListaEquiposComponent implements  OnInit{
   }
 
   // Define las columnas a mostrar
-  displayedColumns: string[] = ['select', 'Equipo', 'Miembros'];
+  displayedColumns: string[] = ['Equipo', 'Miembros','select'];
 
   // Define los items a mostrar
   items: Item[] = [

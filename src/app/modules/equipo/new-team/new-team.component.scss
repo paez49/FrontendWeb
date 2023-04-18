@@ -11,20 +11,26 @@ $font-color: #ffffff;
   h2 {
     font-size: 36px;
     margin-bottom: 30px;
+    text-align: left;
+    right:0px;
+    margin-left: 0px;
   }
-
-  .Lateral {
+  .base{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: #1e1e1e;
     padding: 30px;
     border-radius: 10px;
+  }
+  .base .Lateral {
+    display: flex;
+    flex-direction: row;
+
     .MinorColor {
       padding: 30px;
       margin-bottom: 30px;
-
       label {
         display: block;
         margin-bottom: 20px;
@@ -38,12 +44,29 @@ $font-color: #ffffff;
         border-radius: 5px;
         margin-bottom: 20px;
         color: $primary-color;
-        background-color: $font-color;
+        background-color: black;
         font-weight: bold;
         font-size: 24px;
       }
+      .greenButtonMargin{
+        margin-right: 20px;
+        margin-left: 20px;
+      background-color: rgb(82, 137, 0);
+      color: #898989;
+      color: $font-color;
+        border: none;
+        border-radius: 5px;
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
     }
 
+    }
     img {
       width: 100%;
       margin-bottom: 30px;
@@ -51,19 +74,4 @@ $font-color: #ffffff;
 
   }
 
-
-  button {
-    background-color: $accent-color;
-    color: $font-color;
-    border: none;
-    border-radius: 5px;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-
-    &:hover {
-      background-color: darken($accent-color, 10%);
-    }
-  }
 }

@@ -36,9 +36,9 @@
   <h2>Invitaciones pendientes</h2>
 <div class="tablaequipos" layout-fill>
     <div class="equipo">
-      <mat-table [dataSource]="dataSource" matSort>
+      <mat-table [dataSource]="dataSource" class="tabla" matSort>
       <!-- Columna de nombre -->
-      <ng-container matColumnDef="Nombre">
+      <ng-container matColumnDef="Nombre" >
         <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Nombre}} </mat-cell>
       </ng-container>
@@ -64,9 +64,9 @@
       </ng-container>
       <!-- Agrega las columnas a la tabla -->
     <div class="columnastabla">
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="displayedColumns" style="color:ghostwhite;"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"
-              (click)="selection.toggle(row)">
+              (click)="selection.toggle(row)" style="color:ghostwhite;">
       </mat-row>
 
     </div>
@@ -80,7 +80,8 @@
 </div>
 </div>
 <div id="reserv">
-  aca se reserva la cancha
+
+
 </div>
 </div>
 </div>

@@ -1,17 +1,25 @@
 
 <header>
-  <h1 class="titulo">LISTA DE EQUIPOS</h1>
+  <h1 class="titulo">EQUIPOS</h1>
 </header>
+<div class="base">
+<div class="tablaequipos">
+    <div class="equipo">
+      <mat-table [dataSource]="dataSource" matSort>
 
-<div class="tablaequipos" layout-fill>
-  <mat-card-actions>
-    <div class="botones">
-      <button mat-button (click)="onAceptar()">Aceptar</button>
-      <button mat-button (click)="onRechazar()">Rechazar</button>
+    <div class="columnaequipo">
+      <!-- Columna de nombre -->
+      <ng-container matColumnDef="Equipo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Equipo}} </mat-cell>
+      </ng-container>
     </div>
-  </mat-card-actions>
-  <div class="equipo">
-    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Columna de edad -->
+      <ng-container matColumnDef="Miembros">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Miembros </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Miembros}} </mat-cell>
+      </ng-container>
 
       <!-- Columna de selección -->
       <ng-container matColumnDef="select">
@@ -28,27 +36,18 @@
           </mat-checkbox>
         </mat-cell>
       </ng-container>
-      <div class="columnaequipo">
-        <!-- Columna de nombre -->
-        <ng-container matColumnDef="Equipo">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.Equipo}} </mat-cell>
-        </ng-container>
-      </div>
-
-      <!-- Columna de edad -->
-      <ng-container matColumnDef="Miembros">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Miembros </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Miembros}} </mat-cell>
-      </ng-container>
-
       <!-- Agrega las columnas a la tabla -->
-      <div class="columnastabla">
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"
-                 (click)="selection.toggle(row)">
-        </mat-row>
-      </div>
+    <div class="columnastabla">
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row)">
+      </mat-row>
+    </div>
     </mat-table>
   </div>
+  <mat-card-actions>
+      <button mat-button (click)="onAceptar()" class="blueButtonMargin">Solicitar Unirse</button>
+  </mat-card-actions>
+
+</div>
 </div>
