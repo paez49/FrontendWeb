@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
-import { Item } from '../../usuario/lista-invitaciones/lista-invitaciones.component';
 import { MatCardModule } from '@angular/material/card';
-
+export interface Item {
+  Nombre: string;
+  Edad: number;
+}
 @Component({
   selector: 'app-my-component',
   templateUrl: './administrar-equipo.component.html',
@@ -15,14 +17,14 @@ export class AdministrarEquipoComponent  implements OnInit{
   }
 
   // Define las columnas a mostrar
-  displayedColumns: string[] = ['select', 'Equipo', 'Miembros'];
+  displayedColumns: string[] = ['Nombre', 'Edad', 'select'];
 
   // Define los items a mostrar
   items: Item[] = [
-    {Equipo: 'Millonarios', Miembros: 25},
-    {Equipo: 'Santa Fe', Miembros: 30},
-    {Equipo: 'Pereira', Miembros: 20},
-    {Equipo: 'Equidad', Miembros: 35},
+    {Nombre: 'Millonarios', Edad: 25},
+    {Nombre: 'Santa Fe', Edad: 30},
+    {Nombre: 'a', Edad: 20},
+    {Nombre: 'Equidad', Edad: 35},
   ];
 
   // Define la fuente de datos para la tabla
@@ -49,18 +51,18 @@ export class AdministrarEquipoComponent  implements OnInit{
   onAceptar() {
     if (this.selection.selected.length === this.dataSource.data.length) {
       console.log('Aceptado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
+      this.selection.selected.forEach((row) => console.log(row.Nombre));
     } else {
-      console.log(`Aceptado: ${this.selection.selected[0].Equipo}`);
+      console.log(`Aceptado: ${this.selection.selected[0].Nombre}`);
     }
   }
 
   onRechazar() {
     if (this.selection.selected.length === this.dataSource.data.length) {
       console.log('Rechazado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
+      this.selection.selected.forEach((row) => console.log(row.Nombre));
     } else {
-      console.log(`Rechazado: ${this.selection.selected[0].Equipo}`);
+      console.log(`Rechazado: ${this.selection.selected[0].Nombre}`);
     }
   }
 }
