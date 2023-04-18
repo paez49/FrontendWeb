@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
+import {AuthService} from "../../../services/auth.service";
+import {Router} from "@angular/router";
 
 const moment = _moment;
 export interface Item {
@@ -17,7 +19,7 @@ export interface Item {
 })
 export class AdministrarEquipoComponent  implements OnInit{
   date = new FormControl(moment([2017, 0, 1]));
-  
+  date7: Date | undefined
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
