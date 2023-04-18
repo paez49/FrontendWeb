@@ -6,10 +6,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { NewTeamComponent } from './new-team/new-team.component';
 @NgModule({
   declarations: [
     MisEquiposComponent,
-    AdministrarEquipoComponent
+    AdministrarEquipoComponent,
+    NewTeamComponent
   ],
   imports: [
     CommonModule,

@@ -15,6 +15,9 @@ import { AutenticacionModule } from './modules/autenticacion/autenticacion.modul
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { EquipoModule } from './modules/equipo/equipo.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,10 +29,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ButtonModule,
     TabMenuModule,
+    MatCardModule,
     AutenticacionModule,
     UsuarioModule,
     EquipoModule,
     BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [AuthGuard,AuthService],
   bootstrap: [AppComponent]

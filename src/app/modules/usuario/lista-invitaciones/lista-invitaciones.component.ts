@@ -34,7 +34,7 @@ export class ListaInvitacionesComponent implements OnInit {
 
   // Define el modelo de selección
   selection = new SelectionModel<Item>(true, []);
-  
+
   // Implementa el método para seleccionar/deseleccionar todos los items
   masterToggle() {
     this.isAllSelected() ?
@@ -58,7 +58,7 @@ export class ListaInvitacionesComponent implements OnInit {
       console.log(`Aceptado: ${this.selection.selected[0].Equipo}`);
     }
   }
-  
+
   onRechazar() {
     if (this.selection.selected.length === this.dataSource.data.length) {
       console.log('Rechazado para todos los elementos seleccionados:');

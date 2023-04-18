@@ -27,12 +27,12 @@ $PaginaWeb_Equipos-theme: mat.define-light-theme((
     warn: $PaginaWeb_Equipos-warn,
   )
 ));
+
 body {
   background-image: url('assets/fondo.png'); /* cambia la ruta de la imagen a tu elección */
   backdrop-filter: blur(10px);
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 // Include theme styles for core and each component used in your app.
