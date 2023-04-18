@@ -27,7 +27,7 @@ export class AuthService {
   login(username: string, password: string): string {
 
     // Comprobar si las credenciales son válidas
-    if (username === 'a@a.es' || username=="PaesPatogaymer777@pato.com" && password === '1234') {
+    if (username === 'a@a.es' || username=="PaezPatogaymer777@pato.com" && password === '1234') {
       // Almacenar información del usuario en localStorage
       localStorage.setItem('currentUser', JSON.stringify({username, password}));
       // Establecer la bandera de inicio de sesión

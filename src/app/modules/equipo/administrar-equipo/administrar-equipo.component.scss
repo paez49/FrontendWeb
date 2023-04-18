@@ -3,41 +3,6 @@ $primary-color: hsla(0, 0%, 0%, 0.103);
 $secondary-color:hsla(0, 1%, 33%, 0.158);
 $accent-color: hsla(128, 83%, 37%, 0.336);
 $font-color: hsl(0, 0%, 100%);
-.redButtonMargin{
-      margin-right: 20px;
-      margin-left: 20px;
-    background-color: rgb(207, 0, 0);
-    color: #fff;
-    color: $font-color;
-      border: none;
-      border-radius: 5px;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-
-      &:hover {
-        background-color: darken($accent-color, 10%);
-      }
-  }
-.greenButtonMargin{
-      margin-right: 20px;
-      margin-left: 20px;
-    background-color: rgb(82, 137, 0);
-    color: #fff;
-    color: $font-color;
-      border: none;
-      border-radius: 5px;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-
-      &:hover {
-        background-color: darken($accent-color, 10%);
-      }
-  }
-
 
 .sidebar {
   position: fixed;
@@ -230,8 +195,7 @@ $font-color: hsl(0, 0%, 100%);
       }
 
       .greenButtonMargin{
-        margin-right: 20px;
-        margin-left: 20px;
+        margin: 20px;
       background-color: rgb(82, 137, 0);
       color: #fff;
       color: $font-color;
@@ -247,8 +211,7 @@ $font-color: hsl(0, 0%, 100%);
         }
                         }
       .redButtonMargin{
-      margin-right: 20px;
-      margin-left: 20px;
+      margin: 20px;
     background-color: rgb(207, 0, 0);
     color: #fff;
     color: $font-color;
@@ -264,5 +227,25 @@ $font-color: hsl(0, 0%, 100%);
       }
                       }
     }
+    .base .calendario{
+      margin: 40px;
+      padding: 30px;
 
+      .greenButtonMargin{
+        margin: 20px;
+      background-color: rgb(82, 137, 0);
+      color: #fff;
+      color: $font-color;
+        border: none;
+        border-radius: 5px;
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+                        }
+    }
   }

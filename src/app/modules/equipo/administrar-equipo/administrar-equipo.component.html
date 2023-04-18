@@ -11,7 +11,7 @@
 
 <div class="SuperColor">
 <div class="base">
-<div id="admin">
+<div id="admin" style="width: 100%;">
     <h2>Administrar equipo</h2>
     <div class="Lateral">
     <div class="MinorColor">
@@ -79,8 +79,14 @@
 </mat-card-actions>
 </div>
 </div>
-<div id="reserv">
-  <p-calendar [(ngModel)]="date7" [showTime]="true" inputId="time"></p-calendar>
+<div id="reserv" style="width: 100%;">
+  <h2>Reservar Cancha</h2>
+  <div class="calendario">
+    <p-calendar [(ngModel)]="date7" [showTime]="true" inputId="time"></p-calendar>
+    <mat-card-actions>
+      <button mat-button (click)="onAceptar()" class="greenButtonMargin">Reservar</button>
+    </mat-card-actions>
+  </div>
 </div>
 </div>
 </div>
