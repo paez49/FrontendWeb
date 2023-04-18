@@ -1,0 +1,44 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: rgba(250, 250, 250, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  box-shadow: rgba(13, 39, 155, 0.473) 0px 3px 8px;
+  border-radius: 10px;
+  height: 40vh;
+  width: 60vh;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+
+.imagen{
+  width: 80px;
+  height: 80px;
+
+}
+
+.formulario {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+.boton{
+  height: 40px;
+}
+.small-text{
+  font-size: small;
+}

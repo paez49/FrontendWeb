@@ -1,1 +1,16 @@
-<p>recuperar-contrasenia works!</p>
+<div class="container" layout-fill>
+  <div class="card">
+    <h1>Recuperar contraseña</h1>
+    <form class="formulario">
+      <mat-form-field class="full-width">
+        <mat-label>Correo electronico</mat-label>
+        <input [(ngModel)]="email" type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+               placeholder="Ex. juan@gmail.com">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor ingrese un correo válido.
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <button class="boton" mat-raised-button color="primary" (click)="recoveryPassword()">Recuperar contraseña</button>
+  </div>
+</div>
