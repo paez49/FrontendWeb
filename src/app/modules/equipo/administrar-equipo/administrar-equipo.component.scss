@@ -45,7 +45,7 @@ $font-color: hsl(0, 0%, 100%);
   height: 100%;
   display: flex;
   width: 240px;
-  background-color: rgba(248, 246, 246, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
   nav ul {
     margin-top: 100px;
@@ -55,8 +55,8 @@ $font-color: hsl(0, 0%, 100%);
     li {
       font-size: 20px;
       font-family: sans-serif;
-      background-color: white;
-      border: 2px solid black;
+      background-color: rgb(0, 0, 0);
+      border: 2px solid rgba(255, 255, 255, 0.493);
       height: 1.5em;
       line-height: 1.5em;
       position: relative;
@@ -64,7 +64,7 @@ $font-color: hsl(0, 0%, 100%);
       margin: 0.5em;
       cursor: pointer;
       span {
-        color: white;
+        color: rgba(255, 255, 255, 0.693);
         mix-blend-mode: difference;
       }
     }
@@ -105,6 +105,8 @@ $font-color: hsl(0, 0%, 100%);
       font-size: 36px;
       margin-bottom: 30px;
       text-align: left;
+      right:0px;
+      margin-left: 0px;
     }
     .base{
       display: flex;
@@ -136,18 +138,19 @@ $font-color: hsl(0, 0%, 100%);
           border-radius: 5px;
           margin-bottom: 20px;
           color: $primary-color;
-          background-color: $font-color;
+          background-color: black;
           font-weight: bold;
           font-size: 24px;
         }
         .lado{
           display: flex;
           flex-direction: row;
+          padding: 30px;
           .redButtonMargin{
             margin-right: 20px;
             margin-left: 20px;
           background-color: rgb(207, 0, 0);
-          color: #fff;
+          color: #898989;
           color: $font-color;
             border: none;
             border-radius: 5px;
@@ -157,14 +160,14 @@ $font-color: hsl(0, 0%, 100%);
             cursor: pointer;
 
             &:hover {
-              background-color: darken($accent-color, 10%);
+              background-color: darken( rgb(207, 0, 0), 10%);
             }
         }
         .greenButtonMargin{
           margin-right: 20px;
           margin-left: 20px;
         background-color: rgb(82, 137, 0);
-        color: #fff;
+        color: #898989;
         color: $font-color;
           border: none;
           border-radius: 5px;
@@ -195,17 +198,18 @@ $font-color: hsl(0, 0%, 100%);
 
       .equipo {
         display: flex;
-        height: 60%;
         font-size: 1.5rem;
         padding: 1rem;
         text-align: center;
         transition: all 0.3s ease;
-
       .tabla {
         width: 100%;
         margin: 2rem 0;
+        border-radius: 10px;
         border-collapse: collapse;
-        border: 2px solid #fff;
+        background-color: #ffffff7a;
+        border: 23px solid #616161;
+        color:#fff;
         .th,
        .td {
         padding: 1rem;
@@ -256,7 +260,7 @@ $font-color: hsl(0, 0%, 100%);
       cursor: pointer;
 
       &:hover {
-        background-color: darken($accent-color, 10%);
+        background-color: darken( rgb(207, 0, 0), 10%);
       }
                       }
     }

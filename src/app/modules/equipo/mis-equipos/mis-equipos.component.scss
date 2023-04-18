@@ -6,16 +6,16 @@
   padding: auto;
   a{
     margin-bottom: 30px;
-    color: rgb(224, 224, 224);
+    color: rgb(137, 136, 136);
     font-size: 40px;
   }
 }
 
 .team {
-  color:rgba(0, 0, 0, 0.8);
+  color:rgba(255, 255, 255, 0.8);
   display: flex;
   text-align: center;
-  background-color: rgba(248, 246, 246, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
   transition: background-color 0.5s ease;
   h3{

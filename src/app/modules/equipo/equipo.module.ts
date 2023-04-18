@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { NewTeamComponent } from './new-team/new-team.component';
 @NgModule({
@@ -24,8 +27,11 @@ import { NewTeamComponent } from './new-team/new-team.component';
     MatButtonModule,
     RouterModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
   ]
 })
 export class EquipoModule { }

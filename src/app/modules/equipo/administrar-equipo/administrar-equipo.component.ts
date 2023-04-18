@@ -2,6 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { FormControl } from '@angular/forms';
+import * as _moment from 'moment';
+
+const moment = _moment;
 export interface Item {
   Nombre: string;
   Edad: number;
@@ -12,6 +16,8 @@ export interface Item {
   styleUrls: ['./administrar-equipo.component.scss']
 })
 export class AdministrarEquipoComponent  implements OnInit{
+  date = new FormControl(moment([2017, 0, 1]));
+  
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

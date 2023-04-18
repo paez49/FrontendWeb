@@ -17,6 +17,7 @@ import { EquipoModule } from './modules/equipo/equipo.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormField } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
