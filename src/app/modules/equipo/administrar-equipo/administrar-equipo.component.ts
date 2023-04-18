@@ -21,10 +21,10 @@ export class AdministrarEquipoComponent  implements OnInit{
 
   // Define los items a mostrar
   items: Item[] = [
-    {Nombre: 'Millonarios', Edad: 25},
-    {Nombre: 'Santa Fe', Edad: 30},
-    {Nombre: 'a', Edad: 20},
-    {Nombre: 'Equidad', Edad: 35},
+    {Nombre: 'Juan', Edad: 25},
+    {Nombre: 'Kevyn', Edad: 30},
+    {Nombre: 'Santiago', Edad: 20},
+    {Nombre: 'Mateo', Edad: 35},
   ];
 
   // Define la fuente de datos para la tabla

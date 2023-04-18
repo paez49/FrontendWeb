@@ -10,6 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ListaInvitacionesComponent } from './modules/usuario/lista-invitaciones/lista-invitaciones.component';
 import { RecuperarContraseniaComponent } from './modules/autenticacion/recuperar-contrasenia/recuperar-contrasenia.component';
 import { AdministrarEquipoComponent } from './modules/equipo/administrar-equipo/administrar-equipo.component';
+import {ListaEquiposComponent} from "./modules/usuario/lista-equipos/lista-equipos.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'Equipos', component: MisEquiposComponent,canActivate:[AuthGuard]},
   {path:'Equipo/:name', component: AdministrarEquipoComponent,canActivate:[AuthGuard]},
   {path: 'MisInvitaciones', component: ListaInvitacionesComponent,canActivate:[AuthGuard]},
+  {path: 'listaEquipos',component:ListaEquiposComponent,canActivate:[AuthGuard]},
   {path: 'login', component:LoginComponent,pathMatch:'full'},
   {path: 'register', component:RegisterComponent, pathMatch:'full'},
   {path: 'recuperarContrasenia' ,component: RecuperarContraseniaComponent, pathMatch:'full'},

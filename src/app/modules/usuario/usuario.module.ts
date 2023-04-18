@@ -7,12 +7,14 @@ import { MatCardModule } from '@angular/material/card';
 
 
 import { ListaInvitacionesComponent } from './lista-invitaciones/lista-invitaciones.component';
+import { ListaEquiposComponent } from './lista-equipos/lista-equipos.component';
 
 
 
 @NgModule({
   declarations: [
-    ListaInvitacionesComponent
+    ListaInvitacionesComponent,
+    ListaEquiposComponent
   ],
   imports: [
     CommonModule,

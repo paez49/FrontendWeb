@@ -28,8 +28,12 @@ export class AppComponent {
         {
           label: 'Mis invitaciones',
           routerLink: 'MisInvitaciones',
+        },
+        {
+          label: 'Lista equipos',
+          routerLink: 'listaEquipos',
         }
-      
+
       ];
     }
 }

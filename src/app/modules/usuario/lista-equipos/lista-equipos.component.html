@@ -1,0 +1,54 @@
+
+<header>
+  <h1 class="titulo">LISTA DE EQUIPOS</h1>
+</header>
+
+<div class="tablaequipos" layout-fill>
+  <mat-card-actions>
+    <div class="botones">
+      <button mat-button (click)="onAceptar()">Aceptar</button>
+      <button mat-button (click)="onRechazar()">Rechazar</button>
+    </div>
+  </mat-card-actions>
+  <div class="equipo">
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Columna de selección -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <div class="columnaequipo">
+        <!-- Columna de nombre -->
+        <ng-container matColumnDef="Equipo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.Equipo}} </mat-cell>
+        </ng-container>
+      </div>
+
+      <!-- Columna de edad -->
+      <ng-container matColumnDef="Miembros">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Miembros </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Miembros}} </mat-cell>
+      </ng-container>
+
+      <!-- Agrega las columnas a la tabla -->
+      <div class="columnastabla">
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                 (click)="selection.toggle(row)">
+        </mat-row>
+      </div>
+    </mat-table>
+  </div>
+</div>
