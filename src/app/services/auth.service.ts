@@ -1,40 +1,23 @@
 
 import { Injectable } from '@angular/core';
-
-
+import {HttpClient} from '@angular/common/http'
+import { enviroment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isLogged = false;
-  redirectUrl!: string;
 
-  constructor() {
-  }
-
-  logout():void{
-    this.isLogged = false;
-  }
-
-  logIn():void{
-    this.isLogged = true;
+  constructor(private http: HttpClient) {
   }
 
   isLoggedIn(): boolean {
     return this.isLogged;
   }
 
-  login(username: string, password: string): string {
-
-    // Comprobar si las credenciales son válidas
-    if (username === 'a@a.es' || username=="PaezPatogaymer777@pato.com" && password === '1234') {
-      // Almacenar información del usuario en localStorage
-      localStorage.setItem('currentUser', JSON.stringify({username, password}));
-      // Establecer la bandera de inicio de sesión
-      this.isLogged = true;
-      return 'Inicio de sesión exitoso';
-    } else {
-      return 'Credenciales inválidas';
-    }
+  login(username: string, password: string) {
+    const url = `${enviroment.backendAPI}/api/login`;
+    const loginRequest = { username, password };
+    return this.http.post(url, loginRequest);
   }
 }

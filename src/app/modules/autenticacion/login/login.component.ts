@@ -4,13 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,22 +14,16 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router)  {}
   usuario : string = '';
   contrasenia : string = '';
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  matcher = new MyErrorStateMatcher();
+ 
+ 
   login(): void {
-    if (this.emailFormControl.invalid) {
-      alert("Correo no valido")
-      return;
+   this.authService.login(this.usuario,this.contrasenia).subscribe(
+    response => {
+      console.log(response); // Imprime la respuesta del servidor
+    },
+    error => {
+      console.error(error); // Imprime cualquier error que haya ocurrido
     }
-
-    const message = this.authService.login(this.usuario, this.contrasenia);
-    if (message == 'Credenciales inválidas') {
-      alert(message);
-    } else {
-      // Si el inicio de sesión fue exitoso, navegar a la pantalla deseada
-      if (this.authService.isLogged) {
-        this.router.navigate(['/Equipos']);
-      }
-    }
+  );
   }
 }
