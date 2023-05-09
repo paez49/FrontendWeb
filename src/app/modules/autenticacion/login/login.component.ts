@@ -18,7 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router)  {}
-  email : string = '';
+  usuario : string = '';
   contrasenia : string = '';
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   matcher = new MyErrorStateMatcher();
@@ -28,7 +28,7 @@ export class LoginComponent {
       return;
     }
 
-    const message = this.authService.login(this.email, this.contrasenia);
+    const message = this.authService.login(this.usuario, this.contrasenia);
     if (message == 'Credenciales inválidas') {
       alert(message);
     } else {

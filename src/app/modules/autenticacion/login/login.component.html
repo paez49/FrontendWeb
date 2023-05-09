@@ -3,12 +3,9 @@
     <h1>Login ⚽  🏟️  🥅</h1>
     <form class="formulario">
       <mat-form-field class="full-width">
-        <mat-label>Correo electronico</mat-label>
-        <input [(ngModel)]="email" type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-               placeholder="Ex. juan@gmail.com">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Por favor ingrese un correo válido.
-        </mat-error>
+        <mat-label>Nombre de usuario</mat-label>
+        <input [(ngModel)]="usuario" type="text" matInput name="nombreusuario">
+        
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Contraseña*</mat-label>
