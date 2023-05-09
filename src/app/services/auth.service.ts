@@ -28,10 +28,13 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    const credentials = {username, password}
     const url = `${environment.backendAPI}/api/auth/login`;
-    const loginRequest = { username, password };
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     const options = { headers: headers };
-    return this.http.post(url, loginRequest, options);
+    return this.http.post<any>(url, credentials, options);
   }
-}
+  }
+
