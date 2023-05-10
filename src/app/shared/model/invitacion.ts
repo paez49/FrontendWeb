@@ -1,4 +1,6 @@
+import { Equipo } from "./equipo"
+
 export class Invitacion{
     id!: number
-    teamId!: number
+    team!:Equipo
 }
