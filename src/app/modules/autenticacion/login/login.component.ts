@@ -18,10 +18,9 @@ export class LoginComponent {
  
   login(): void {
     this.authService.login(this.usuario,this.contrasenia).subscribe((response: any) => {
-      // Aquí puedes manejar la respuesta del servidor en caso de éxito
-      console.log(response);
+      console.log(localStorage.getItem('user'))
+      this.router.navigate(['/Equipos'])
     }, (error: any) => {
-      // Aquí puedes manejar el error en caso de que la petición al servidor falle
       console.error(error);
     });
   }

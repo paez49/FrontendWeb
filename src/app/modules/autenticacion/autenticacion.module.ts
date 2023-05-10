@@ -9,6 +9,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecuperarContraseniaComponent } from './recuperar-contrasenia/recuperar-contrasenia.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -23,6 +24,8 @@ import { RecuperarContraseniaComponent } from './recuperar-contrasenia/recuperar
     MatInputModule,
     ReactiveFormsModule
   ],
-  
+  providers: [
+    AuthGuard
+  ],
 })
 export class AutenticacionModule { }
