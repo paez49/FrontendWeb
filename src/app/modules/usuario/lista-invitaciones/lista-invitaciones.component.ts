@@ -1,8 +1,8 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-
-
+import { InvitationService } from 'src/app/services/invitation.service';
+import { Invitacion } from 'src/app/shared/model/invitacion';
 export interface Item {
   Equipo: string;
   Miembros: number;
@@ -14,8 +14,17 @@ export interface Item {
 })
 
 export class ListaInvitacionesComponent implements OnInit {
+  constructor(private invitationService: InvitationService) { }
+  invitaciones: Invitacion[] = [];
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    const userId = JSON.parse(localStorage.getItem('user')!).id;
+    console.log(userId)
+    this.invitationService.getInvitationsByUserId(userId)
+    .subscribe((invitaciones) => {
+      this.invitaciones = invitaciones;
+      console.log(invitaciones)
+    });
+    
   }
 
   // Define las columnas a mostrar
