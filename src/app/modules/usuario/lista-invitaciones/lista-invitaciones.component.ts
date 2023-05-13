@@ -17,7 +17,7 @@ export class ListaInvitacionesComponent implements OnInit {
   constructor(private invitationService: InvitationService) { }
   invitaciones: Invitacion[] = [];
   ngOnInit(): void {
-    const userId = JSON.parse(localStorage.getItem('user')!).id;
+    const userId = JSON.parse(localStorage.getItem('currentUser')!).id;
     console.log(userId)
     this.invitationService.getInvitationsByUserId(userId)
     .subscribe((invitaciones) => {

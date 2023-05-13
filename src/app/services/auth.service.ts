@@ -18,6 +18,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
     let user = localStorage.getItem('currentUser')
     if(user === null){
+      console.log("ENTRA")
       this.authenticationResponseSubject = new BehaviorSubject<AuthenticationResponse>(new AuthenticationResponse)
     }else{
       this.authenticationResponseSubject = new BehaviorSubject<AuthenticationResponse>(JSON.parse(user))
@@ -46,18 +47,9 @@ export class AuthService {
       // extract the token and user from the response
       const token = response.token;
       const user = response.user;
-  
-      // store the token in local storage
-      //localStorage.setItem('token', token);
-  
-      // store the user object in local storage
-      localStorage.setItem('user', JSON.stringify(user));
-  
-      // emit the user object using a subject so that other components can access it
+      localStorage.setItem('token',token)
+      localStorage.setItem('currentUser',JSON.stringify(user))
       this.authenticationResponseSubject.next(user);
-  
-      // return the user object
-      return user;
     }));
     
   }
