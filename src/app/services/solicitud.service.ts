@@ -17,6 +17,10 @@ export class SolicitudService {
   /* Cuando se consultan todos los equipos participes, en realidad lo que llegan son objetos de Equipo
      Entonces en esta parte la idea sería consultar al equipo y luego llamar a este servicio,
      sacando el id del objeto Equipo cuando se abra AdminEquipo.
+
+     Entonces en la ruta del url saldrá que se cambió a las siglas pero
+     al final y al cabo los objetos de tipo Equipo y las consultas
+     se hacen por debajo.
   */
   //Equipos -> AdminEquipo -> Lista solicitudes pendientes
   getSolicitudes(idEquipo:number):Observable<Solicitud[]>{
