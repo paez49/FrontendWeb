@@ -12,4 +12,8 @@ export class InvitationService {
   getInvitationsByUserId(id: number): Observable<Invitacion[]>{
     return this.http.get<Invitacion[]>(`${environment.backendAPI}/invitaciones/get/${id}`);
   }
+  denyInvitationById(id: number): Observable<any> {
+    return this.http.delete(`${environment.backendAPI}/invitaciones/deny/{id}`);
+  }
+  
 }
