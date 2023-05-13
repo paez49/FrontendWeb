@@ -24,14 +24,6 @@ export class ListaInvitacionesComponent implements OnInit {
       this.invitaciones = invitaciones;
       console.log(invitaciones)
     });
-    this.invitationService.denyInvitationById(1).subscribe(
-      response => {
-        console.log(response); // Manejar la respuesta si es necesario
-      },
-      error => {
-        console.error(error); // Manejar el error si lo hay
-      }
-    );
     
     
   }
