@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InvitationService {
-
+  //ACÁ ESTAN TODAS LAS PETICIONES PARA LA PESTAÑA MIS INVITACIONES
   constructor(private http: HttpClient){}
   getInvitationsByUserId(id: number): Observable<Invitacion[]>{
     return this.http.get<Invitacion[]>(`${environment.backendAPI}/invitaciones/get/${id}`);

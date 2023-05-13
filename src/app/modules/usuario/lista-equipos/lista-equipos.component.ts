@@ -2,15 +2,27 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Item} from "../lista-invitaciones/lista-invitaciones.component";
+import { EquipoService } from 'src/app/services/equipo.service';
+import { Equipo } from 'src/app/shared/model/equipo';
 
 @Component({
   selector: 'app-lista-equipos',
   templateUrl: './lista-equipos.component.html',
   styleUrls: ['./lista-equipos.component.scss']
 })
+
 export class ListaEquiposComponent implements  OnInit{
+  constructor(private equipoService: EquipoService) { }
+  equipos: Equipo[] = []
+  
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    const usuarioJSON = localStorage.getItem('currentUser') ?? "";
+    const usuario = JSON.parse(usuarioJSON);
+    const idUsuario = usuario.id;
+    this.equipoService.getEquiposDisponibles(idUsuario).subscribe((equipos) => {
+      this.equipos = equipos;
+      console.log(equipos)
+    });
   }
 
   // Define las columnas a mostrar
