@@ -7,7 +7,7 @@ import { Invitacion } from 'src/app/shared/model/invitacion';
 export interface Item {
   Equipo: string;
   Siglas: string;
-  Id: number;
+  id: number;
 }
 @Component({
   selector: 'app-my-component',
@@ -32,7 +32,7 @@ export class ListaInvitacionesComponent implements OnInit {
           var obj = {
             Equipo: element.equipo.nombreEquipo,
             Siglas: element.equipo.siglas,
-            Id: element.equipo.id
+            id: element.equipo.id
           };
           this.items.push(obj)
         });
@@ -66,15 +66,20 @@ export class ListaInvitacionesComponent implements OnInit {
     }
   }
   onRechazar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Rechazado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
-    } else {
-      this.selection.selected.forEach(element => {
-        console.log(`Rechazado: ${element.Equipo}`);
-      });
-
-    }
+    const selectedIds: number[] = this.selection.selected.map(row => row.id); // Obtén los IDs de los elementos seleccionados
+  
+    selectedIds.forEach(id => {
+      this.invitationService.denyInvitationById(id).subscribe(
+        () => {
+          console.log(`Invitación denegada con ID: ${id}`);
+          // Aquí puedes realizar cualquier otra acción necesaria después de denegar la invitación
+        },
+        (error) => {
+          console.error('Ocurrió un error al denegar la invitación:', error);
+          // Manejo de errores, si es necesario
+        }
+      );
+    });
   }
   onCancelar() {
     this.selection.clear();
