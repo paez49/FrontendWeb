@@ -29,15 +29,15 @@ export class ListaInvitacionesComponent implements OnInit {
     this.invitationService.getInvitationsByUserId(userId).subscribe((invitaciones) => {
       this.invitaciones = invitaciones;
       invitaciones.forEach(element => {
-          var obj = {
-            Equipo: element.equipo.nombreEquipo,
-            Siglas: element.equipo.siglas,
-            id: element.equipo.id
-          };
-          this.items.push(obj)
-        });
-        this.dataSource = new MatTableDataSource<Item>(this.items);
+        var obj = {
+          Equipo: element.equipo.nombreEquipo,
+          Siglas: element.equipo.siglas,
+          id: element.equipo.id
+        };
+        this.items.push(obj);
       });
+      this.dataSource = new MatTableDataSource<Item>(this.items);
+    });
   }
 
   // Implementa el método para seleccionar/deseleccionar todos los items
@@ -56,14 +56,16 @@ export class ListaInvitacionesComponent implements OnInit {
   }
 
   onAceptar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Aceptado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
-    } else {
-      this.selection.selected.forEach(element => {
-        console.log(`Aceptado: ${element.Equipo}`);
-      });
-    }
+    this.selection.selected.forEach(invitaciones => {
+      this.invitationService.acceptInvitation(invitaciones).subscribe(
+        () => {
+          console.log(`Invitación aceptada: ${invitaciones.Equipo}`);
+        },
+        (error) => {
+          console.error(`Error al aceptar la invitación: ${error}`);
+        }
+      );
+    });
   }
   onRechazar() {
     const selectedIds: number[] = this.selection.selected.map(row => row.id); // Obtén los IDs de los elementos seleccionados
@@ -72,11 +74,9 @@ export class ListaInvitacionesComponent implements OnInit {
       this.invitationService.denyInvitationById(id).subscribe(
         () => {
           console.log(`Invitación denegada con ID: ${id}`);
-          // Aquí puedes realizar cualquier otra acción necesaria después de denegar la invitación
         },
         (error) => {
           console.error('Ocurrió un error al denegar la invitación:', error);
-          // Manejo de errores, si es necesario
         }
       );
     });
