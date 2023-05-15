@@ -5,7 +5,7 @@ import { InvitationService } from 'src/app/services/invitation.service';
 import { Invitacion } from 'src/app/shared/model/invitacion';
 export interface Item {
   Equipo: string;
-  Miembros: number;
+  Siglas: string;
 }
 @Component({
   selector: 'app-my-component',
@@ -15,35 +15,28 @@ export interface Item {
 
 export class ListaInvitacionesComponent implements OnInit {
   constructor(private invitationService: InvitationService) { }
+
   invitaciones: Invitacion[] = [];
+  items: Item[] = [];
+  displayedColumns: string[] = ['Equipo', 'Siglas', 'select'];
+  dataSource!: MatTableDataSource<Item>;
+  selection = new SelectionModel<Item>(true, []);
+
   ngOnInit(): void {
     const userId = JSON.parse(localStorage.getItem('currentUser')!).id;
-    console.log(userId)
+    console.log(userId);
     this.invitationService.getInvitationsByUserId(userId)
-    .subscribe((invitaciones) => {
-      this.invitaciones = invitaciones;
-      console.log(invitaciones)
-    });
-    
-    
+      .subscribe((invitaciones) => {
+        this.invitaciones = invitaciones;
+        this.items = this.invitaciones.map((invitacion: Invitacion) => {
+          return {
+            Equipo: invitacion.team.nombreEquipo,
+            Siglas: invitacion.team.siglas
+          };
+        });
+        this.dataSource = new MatTableDataSource<Item>(this.items);
+      });
   }
-
-  // Define las columnas a mostrar
-  displayedColumns: string[] = ['Equipo', 'Miembros','select'];
-
-  // Define los items a mostrar
-  items: Item[] = [
-    {Equipo: 'Millonarios', Miembros: 25},
-    {Equipo: 'Santa Fe', Miembros: 30},
-    {Equipo: 'Pereira', Miembros: 20},
-    {Equipo: 'Equidad', Miembros: 35},
-  ];
-
-  // Define la fuente de datos para la tabla
-  dataSource = new MatTableDataSource<Item>(this.items);
-
-  // Define el modelo de selección
-  selection = new SelectionModel<Item>(true, []);
 
   // Implementa el método para seleccionar/deseleccionar todos los items
   masterToggle() {

@@ -19,7 +19,7 @@ export class ListaEquiposComponent implements  OnInit{
     const usuarioJSON = localStorage.getItem('currentUser') ?? "";
     const usuario = JSON.parse(usuarioJSON);
     const idUsuario = usuario.id;
-    this.equipoService.getEquiposDisponibles(idUsuario).subscribe((equipos) => {
+    this.equipoService.getEquiposDisponibles(idUsuario).subscribe((equipos: Equipo[]) => {
       this.equipos = equipos;
       console.log(equipos)
     });
@@ -30,10 +30,10 @@ export class ListaEquiposComponent implements  OnInit{
 
   // Define los items a mostrar
   items: Item[] = [
-    {Equipo: 'Millonarios', Miembros: 25},
-    {Equipo: 'Santa Fe', Miembros: 30},
-    {Equipo: 'Pereira', Miembros: 20},
-    {Equipo: 'Equidad', Miembros: 35},
+    {Equipo: 'Millonarios', Siglas: 'a'},
+    {Equipo: 'Santa Fe', Siglas: 'a'},
+    {Equipo: 'Pereira', Siglas: 'a'},
+    {Equipo: 'Equidad', Siglas: 'a'},
   ];
 
   // Define la fuente de datos para la tabla
