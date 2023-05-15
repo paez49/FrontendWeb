@@ -7,6 +7,7 @@ import { Invitacion } from 'src/app/shared/model/invitacion';
 export interface Item {
   Equipo: string;
   Siglas: string;
+  Id: number;
 }
 @Component({
   selector: 'app-my-component',
@@ -25,14 +26,13 @@ export class ListaInvitacionesComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = JSON.parse(localStorage.getItem('currentUser')!).id;
-    console.log(userId);
-    this.invitationService.getInvitationsByUserId(userId)
-      .subscribe((invitaciones) => {
-        this.invitaciones = invitaciones;
-        invitaciones.forEach(element => {
+    this.invitationService.getInvitationsByUserId(userId).subscribe((invitaciones) => {
+      this.invitaciones = invitaciones;
+      invitaciones.forEach(element => {
           var obj = {
             Equipo: element.equipo.nombreEquipo,
-            Siglas: element.equipo.siglas
+            Siglas: element.equipo.siglas,
+            Id: element.equipo.id
           };
           this.items.push(obj)
         });
