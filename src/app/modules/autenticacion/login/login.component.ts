@@ -14,8 +14,8 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router)  {}
   usuario : string = '';
   contrasenia : string = '';
- 
- 
+
+
   login(): void {
     this.authService.login(this.usuario,this.contrasenia).subscribe((response: any) => {
       console.log(localStorage.getItem('currentUser'))
@@ -25,3 +25,4 @@ export class LoginComponent {
     });
   }
 }
+ 

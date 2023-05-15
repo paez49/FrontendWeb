@@ -21,7 +21,7 @@ export class AdministrarEquipoComponent  implements OnInit{
   date = new FormControl(moment([2017, 0, 1]));
   date7: Date | undefined
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
 
   // Define las columnas a mostrar
@@ -61,17 +61,34 @@ export class AdministrarEquipoComponent  implements OnInit{
       console.log('Aceptado para todos los elementos seleccionados:');
       this.selection.selected.forEach((row) => console.log(row.Nombre));
     } else {
-      console.log(`Aceptado: ${this.selection.selected[0].Nombre}`);
+      this.selection.selected.forEach(element => {
+        console.log(`Aceptado: ${element.Nombre}`);
+      });
     }
   }
-
+  onInvitar() {
+    if (this.selection.selected.length === this.dataSource.data.length) {
+      console.log('Invitados todos los elementos seleccionados:');
+      this.selection.selected.forEach((row) => console.log(row.Nombre));
+    } else {
+      this.selection.selected.forEach(element => {
+        console.log(`Invitado: ${element.Nombre}`);
+      });
+    }
+  }
   onRechazar() {
     if (this.selection.selected.length === this.dataSource.data.length) {
       console.log('Rechazado para todos los elementos seleccionados:');
       this.selection.selected.forEach((row) => console.log(row.Nombre));
     } else {
-      console.log(`Rechazado: ${this.selection.selected[0].Nombre}`);
+      this.selection.selected.forEach(element => {
+        console.log(`Rechazado: ${element.Nombre}`);
+      });
+
     }
+  }
+  onCancelar() {
+    this.selection.clear();
   }
 }
 
