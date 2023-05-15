@@ -2,6 +2,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { InvitationService } from 'src/app/services/invitation.service';
+import { Equipo } from 'src/app/shared/model/equipo';
 import { Invitacion } from 'src/app/shared/model/invitacion';
 export interface Item {
   Equipo: string;
@@ -28,11 +29,12 @@ export class ListaInvitacionesComponent implements OnInit {
     this.invitationService.getInvitationsByUserId(userId)
       .subscribe((invitaciones) => {
         this.invitaciones = invitaciones;
-        this.items = this.invitaciones.map((invitacion: Invitacion) => {
-          return {
-            Equipo: invitacion.team.nombreEquipo,
-            Siglas: invitacion.team.siglas
+        invitaciones.forEach(element => {
+          var obj = {
+            Equipo: element.equipo.nombreEquipo,
+            Siglas: element.equipo.siglas
           };
+          this.items.push(obj)
         });
         this.dataSource = new MatTableDataSource<Item>(this.items);
       });
@@ -58,16 +60,23 @@ export class ListaInvitacionesComponent implements OnInit {
       console.log('Aceptado para todos los elementos seleccionados:');
       this.selection.selected.forEach((row) => console.log(row.Equipo));
     } else {
-      console.log(`Aceptado: ${this.selection.selected[0].Equipo}`);
+      this.selection.selected.forEach(element => {
+        console.log(`Aceptado: ${element.Equipo}`);
+      });
     }
   }
-
   onRechazar() {
     if (this.selection.selected.length === this.dataSource.data.length) {
       console.log('Rechazado para todos los elementos seleccionados:');
       this.selection.selected.forEach((row) => console.log(row.Equipo));
     } else {
-      console.log(`Rechazado: ${this.selection.selected[0].Equipo}`);
+      this.selection.selected.forEach(element => {
+        console.log(`Rechazado: ${element.Equipo}`);
+      });
+
     }
+  }
+  onCancelar() {
+    this.selection.clear();
   }
 }
