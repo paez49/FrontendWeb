@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecuperarContraseniaComponent } from './recuperar-contrasenia/recuperar-contrasenia.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { MaterialModule } from 'src/app/material.module';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -22,7 +23,8 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
     TabMenuModule,
     FormsModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [
     AuthGuard

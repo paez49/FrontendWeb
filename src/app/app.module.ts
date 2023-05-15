@@ -8,19 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { HomeComponent } from './components/home/home.component';
-
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { AutenticacionModule } from './modules/autenticacion/autenticacion.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { EquipoModule } from './modules/equipo/equipo.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormField } from '@angular/material/form-field';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
-
+import { MaterialModule } from './material.module';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,12 +29,11 @@ import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
     AppRoutingModule,
     ButtonModule,
     TabMenuModule,
-    MatCardModule,
     AutenticacionModule,
     UsuarioModule,
     EquipoModule,
-    BrowserAnimationsModule,
-    MatDialogModule
+    MaterialModule,
+    MatFormFieldModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
