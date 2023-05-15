@@ -32,7 +32,7 @@ export class ListaInvitacionesComponent implements OnInit {
         var obj = {
           Equipo: element.equipo.nombreEquipo,
           Siglas: element.equipo.siglas,
-          id: element.equipo.id
+          id: element.id
         };
         this.items.push(obj);
       });
@@ -55,21 +55,42 @@ export class ListaInvitacionesComponent implements OnInit {
     return numSelected === numRows;
   }
 
+  findInvitacionOnId(id: Number){
+    let invitacionEncontrada = null;
+    console.log("Buscando")
+    this.invitaciones.forEach(element => {
+      console.log(element)
+      console.log(id)
+      if(element.id == id) {
+        invitacionEncontrada = element;
+        return;
+      }
+    });
+    return invitacionEncontrada;
+  }
+
   onAceptar() {
-    this.selection.selected.forEach(invitaciones => {
-      this.invitationService.acceptInvitation(invitaciones).subscribe(
-        () => {
-          console.log(`Invitación aceptada: ${invitaciones.Equipo}`);
-        },
-        (error) => {
-          console.error(`Error al aceptar la invitación: ${error}`);
-        }
-      );
+    const selectedIds: number[] = this.selection.selected.map(row => row.id); // Obtén los IDs de los elementos seleccionados
+    selectedIds.forEach(id => {
+      var invitacion = this.findInvitacionOnId(id);
+      if (invitacion) {
+        this.invitationService.acceptInvitation(invitacion).subscribe(
+          () => {
+            console.log(`Invitación Aceptada con ID: ${id}`);
+          },
+          (error) => {
+            console.error('Ocurrió un error al Aceptar la invitación:', error);
+          }
+        );
+      } else {
+        console.error('invitacion no está definido');
+      }
     });
   }
+
   onRechazar() {
     const selectedIds: number[] = this.selection.selected.map(row => row.id); // Obtén los IDs de los elementos seleccionados
-  
+
     selectedIds.forEach(id => {
       this.invitationService.denyInvitationById(id).subscribe(
         () => {

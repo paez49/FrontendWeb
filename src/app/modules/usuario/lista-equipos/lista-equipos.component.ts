@@ -58,20 +58,10 @@ export class ListaEquiposComponent implements  OnInit{
   }
 
   onAceptar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Aceptado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
-    } else {
-      console.log(`Aceptado: ${this.selection.selected[0].Equipo}`);
-    }
+      this.selection.selected.forEach((row) => console.log("aceptado ",row.Equipo));
   }
 
   onRechazar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Rechazado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
-    } else {
-      console.log(`Rechazado: ${this.selection.selected[0].Equipo}`);
-    }
+      this.selection.selected.forEach((row) => console.log("rechazado ",row.Equipo));
   }
 }
