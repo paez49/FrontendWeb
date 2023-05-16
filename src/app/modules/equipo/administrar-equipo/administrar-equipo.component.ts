@@ -29,8 +29,9 @@ export class AdministrarEquipoComponent  implements OnInit{
   dataSource!: MatTableDataSource<Item>;
   selection = new SelectionModel<Item>(true, []);
   ngOnInit(): void {
-    const IdEquipo = JSON.parse(localStorage.getItem('currentUser')!).equipoId;
-    this.solicitudService.getSolicitudes(IdEquipo).subscribe((solicitudes) => {
+    const equipoId = localStorage.getItem('equipoId');
+    if(equipoId){
+    this.solicitudService.getSolicitudes(parseInt(equipoId)).subscribe((solicitudes) => {
       this.solicitudes = solicitudes;
       solicitudes.forEach(Element => {
         var obj = {
@@ -39,8 +40,9 @@ export class AdministrarEquipoComponent  implements OnInit{
         }
         this.items.push(obj);
       })
+
       this.dataSource = new MatTableDataSource<Item>(this.items);
-    })
+    })}
   }
 
 
