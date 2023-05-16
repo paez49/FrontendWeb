@@ -54,19 +54,8 @@ export class ListaInvitacionesComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-
-  findInvitacionOnId(id: Number){
-    let invitacionEncontrada = null;
-    console.log("Buscando")
-    this.invitaciones.forEach(element => {
-      console.log(element)
-      console.log(id)
-      if(element.id == id) {
-        invitacionEncontrada = element;
-        return;
-      }
-    });
-    return invitacionEncontrada;
+  findInvitacionOnId(id: number) {
+    return this.invitaciones.find(element => element.id === id) || null;
   }
 
   onAceptar() {

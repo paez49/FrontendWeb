@@ -29,15 +29,12 @@ export class ListaEquiposComponent implements  OnInit{
     const idUsuario = usuario.id;
     this.equipoService.getEquiposDisponibles(idUsuario).subscribe((equipos: Equipo[]) => {
       this.equipos = equipos;
-      console.log(equipos)
       equipos.forEach(element => {
-        console.log(element)
         var obj = {
           Equipo: element.nombreEquipo,
           Siglas: element.siglas,
           id: element.id
         };
-        console.log(obj)
         this.items.push(obj)
       });
     this.dataSource = new MatTableDataSource<Item>(this.items);
