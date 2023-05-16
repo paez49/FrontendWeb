@@ -22,9 +22,9 @@ export class EquipoService {
     return this.http.delete(`${environment.backendAPI}/equipos/delete/${idEquipo}`)
   }
   //Equipos -> Boton crear equipo
-  createEquipo(equipo:Equipo):Observable<Equipo>{
+  createEquipo(equipo:Equipo,idUsuario:number):Observable<Equipo>{
     const body = {equipo}
-    return this.http.post(`${environment.backendAPI}/equipos/create`,equipo)
+    return this.http.post(`${environment.backendAPI}/equipos/create/${idUsuario}`,equipo)
     .pipe(map(response => response as Equipo));
   }
 }
