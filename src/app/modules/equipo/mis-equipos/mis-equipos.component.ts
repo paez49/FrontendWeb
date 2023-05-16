@@ -42,9 +42,14 @@ ngOnInit(): void {
   }
 
 
-
-
-
+  guardarIdEquipo(id: number) {
+    localStorage.setItem('equipoId', JSON.stringify(id));
+    const equipoId = localStorage.getItem('equipoId');
+    if (equipoId) {
+      const id = JSON.parse(equipoId);
+      console.log(id);
+    }
+  }
 
   logout(): void {
     localStorage.removeItem('currentUser')
