@@ -25,7 +25,7 @@ export class AdministrarEquipoComponent  implements OnInit{
   date = new FormControl(moment([2017, 0, 1]));
   date7: Date | undefined
   items: Item[] = [];
-  displayedColumns: string[] = ['Nombre', 'Edad', 'select'];
+  displayedColumns: string[] = ['username', 'email', 'select'];
   dataSource!: MatTableDataSource<Item>;
   selection = new SelectionModel<Item>(true, []);
   ngOnInit(): void {
