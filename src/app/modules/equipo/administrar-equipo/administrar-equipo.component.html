@@ -38,14 +38,14 @@
     <div class="equipo">
       <mat-table [dataSource]="dataSource" class="tabla" matSort>
       <!-- Columna de nombre -->
-      <ng-container matColumnDef="Nombre" >
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Nombre}} </mat-cell>
+      <ng-container matColumnDef="username" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.username} </mat-cell>
       </ng-container>
       <!-- Columna de edad -->
-      <ng-container matColumnDef="Edad">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Edad </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Edad}} </mat-cell>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
       </ng-container>
       <!-- Columna de selección -->
       <ng-container matColumnDef="select">
@@ -83,14 +83,14 @@
     <div class="equipo">
       <mat-table [dataSource]="dataSource" class="tabla" matSort>
       <!-- Columna de nombre -->
-      <ng-container matColumnDef="Nombre" >
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Nombre}} </mat-cell>
+      <ng-container matColumnDef="username" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> username</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
       </ng-container>
       <!-- Columna de edad -->
-      <ng-container matColumnDef="Edad">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Edad </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Edad}} </mat-cell>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
       </ng-container>
       <!-- Columna de selección -->
       <ng-container matColumnDef="select">
