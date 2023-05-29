@@ -1,11 +1,13 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-
-
+import { InvitationService } from 'src/app/services/invitation.service';
+import { Equipo } from 'src/app/shared/model/equipo';
+import { Invitacion } from 'src/app/shared/model/invitacion';
 export interface Item {
   Equipo: string;
-  Miembros: number;
+  Siglas: string;
+  id: number;
 }
 @Component({
   selector: 'app-my-component',
@@ -14,26 +16,29 @@ export interface Item {
 })
 
 export class ListaInvitacionesComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private invitationService: InvitationService) { }
 
-  // Define las columnas a mostrar
-  displayedColumns: string[] = ['Equipo', 'Miembros','select'];
-
-  // Define los items a mostrar
-  items: Item[] = [
-    {Equipo: 'Millonarios', Miembros: 25},
-    {Equipo: 'Santa Fe', Miembros: 30},
-    {Equipo: 'Pereira', Miembros: 20},
-    {Equipo: 'Equidad', Miembros: 35},
-  ];
-
-  // Define la fuente de datos para la tabla
-  dataSource = new MatTableDataSource<Item>(this.items);
-
-  // Define el modelo de selección
+  invitaciones: Invitacion[] = [];
+  items: Item[] = [];
+  displayedColumns: string[] = ['Equipo', 'Siglas', 'select'];
+  dataSource!: MatTableDataSource<Item>;
   selection = new SelectionModel<Item>(true, []);
+
+  ngOnInit(): void {
+    const userId = JSON.parse(localStorage.getItem('currentUser')!).id;
+    this.invitationService.getInvitationsByUserId(userId).subscribe((invitaciones) => {
+      this.invitaciones = invitaciones;
+      invitaciones.forEach(element => {
+        var obj = {
+          Equipo: element.equipo.nombreEquipo,
+          Siglas: element.equipo.siglas,
+          id: element.id
+        };
+        this.items.push(obj);
+      });
+      this.dataSource = new MatTableDataSource<Item>(this.items);
+    });
+  }
 
   // Implementa el método para seleccionar/deseleccionar todos los items
   masterToggle() {
@@ -49,22 +54,44 @@ export class ListaInvitacionesComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
+  findInvitacionOnId(id: number) {
+    return this.invitaciones.find(element => element.id === id) || null;
+  }
 
   onAceptar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Aceptado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
-    } else {
-      console.log(`Aceptado: ${this.selection.selected[0].Equipo}`);
-    }
+    const selectedIds: number[] = this.selection.selected.map(row => row.id); // Obtén los IDs de los elementos seleccionados
+    selectedIds.forEach(id => {
+      var invitacion = this.findInvitacionOnId(id);
+      if (invitacion) {
+        this.invitationService.acceptInvitation(invitacion).subscribe(
+          () => {
+            console.log(`Invitación Aceptada con ID: ${id}`);
+          },
+          (error) => {
+            console.error('Ocurrió un error al Aceptar la invitación:', error);
+          }
+        );
+      } else {
+        console.error('invitacion no está definido');
+      }
+    });
   }
 
   onRechazar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Rechazado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.Equipo));
-    } else {
-      console.log(`Rechazado: ${this.selection.selected[0].Equipo}`);
-    }
+    const selectedIds: number[] = this.selection.selected.map(row => row.id); // Obtén los IDs de los elementos seleccionados
+
+    selectedIds.forEach(id => {
+      this.invitationService.denyInvitationById(id).subscribe(
+        () => {
+          console.log(`Invitación denegada con ID: ${id}`);
+        },
+        (error) => {
+          console.error('Ocurrió un error al denegar la invitación:', error);
+        }
+      );
+    });
+  }
+  onCancelar() {
+    this.selection.clear();
   }
 }

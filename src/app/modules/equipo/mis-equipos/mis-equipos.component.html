@@ -2,30 +2,13 @@
 <a>Equipos</a>
 <button mat-fab extended class="addTeam" (click)="openDialog()">Crear nuevo equipo</button>
 
-<div class= "myTeams">
-
-  <button mat-fab extended routerLink="/Equipo/PFC" class="team teamDisplay">
-    <h3>PatosFC PFC</h3>
+<div class="myTeams">
+  <button mat-fab extended *ngFor="let item of items" [routerLink]="['/Equipo', item.Siglas]" class="team teamDisplay" (click)="guardarIdEquipo(item.id)">
+    <h3>{{item.Equipo}} {{item.Siglas}}</h3>
   </button>
-  <button mat-fab extended routerLink="/Equipo/RMCF" class="team teamDisplay">
-    <h3>Real Madrid RMCF</h3>
-  </button>
-  <button mat-fab extended routerLink="/Equipo/FCB" class="team teamDisplay">
-    <h3>Barcelona FCB</h3>
-  </button>
-  <button mat-fab extended routerLink="/Equipo/BMFC" class="team teamDisplay">
-    <h3>Bayern Munich BMFC</h3>
-  </button>
-  <button mat-fab extended routerLink="/Equipo/LFC" class="team teamDisplay">
-    <h3>Liverpool LFC</h3>
-  </button>
-  <button mat-fab extended routerLink="/Equipo/PSG" class="team teamDisplay">
-    <h3>Paris Saint-Germain PSG</h3>
-  </button>
-  <button mat-fab extended routerLink="/Equipo/JFC" class="team teamDisplay">
-    <h3>Juventus JFC</h3>
-  </button>
-
 </div>
+
+
+<button mat-fab extended class="addTeam" (click)="logout()">Salir</button>
 </div>
 

@@ -33,19 +33,19 @@
     </div>
 <div id="invit" style="width: 100%;">
 
-  <h2>Invitaciones pendientes</h2>
+  <h2>Solicitudes pendientes</h2>
 <div class="tablaequipos" layout-fill>
     <div class="equipo">
       <mat-table [dataSource]="dataSource" class="tabla" matSort>
       <!-- Columna de nombre -->
-      <ng-container matColumnDef="Nombre" >
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Nombre}} </mat-cell>
+      <ng-container matColumnDef="username" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
       </ng-container>
       <!-- Columna de edad -->
-      <ng-container matColumnDef="Edad">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Edad </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Edad}} </mat-cell>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
       </ng-container>
       <!-- Columna de selección -->
       <ng-container matColumnDef="select">
@@ -78,6 +78,52 @@
   <button mat-button (click)="onRechazar()" class="redButtonMargin">Rechazar</button>
 </mat-card-actions>
 </div>
+<h2>Invitar Jugadores</h2>
+<div class="tablaequipos" layout-fill>
+    <div class="equipo">
+      <mat-table [dataSource]="dataSource" class="tabla" matSort>
+      <!-- Columna de nombre -->
+      <ng-container matColumnDef="username" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> username</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+      </ng-container>
+      <!-- Columna de edad -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+      </ng-container>
+      <!-- Columna de selección -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <!-- Agrega las columnas a la tabla -->
+    <div class="columnastabla">
+      <mat-header-row *matHeaderRowDef="displayedColumns" style="color:ghostwhite;"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row)" style="color:ghostwhite;">
+      </mat-row>
+
+    </div>
+    </mat-table>
+    </div>
+
+<mat-card-actions>
+  <button mat-button (click)="onInvitar()" class="greenButtonMargin">Invitar</button>
+  <button mat-button (click)="onCancelar()" class="redButtonMargin">Cancelar</button>
+</mat-card-actions>
+</div>
+
 </div>
 <div id="reserv" style="width: 100%;">
   <h2>Reservar Cancha</h2>

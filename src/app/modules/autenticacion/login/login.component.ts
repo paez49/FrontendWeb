@@ -14,14 +14,15 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router)  {}
   usuario : string = '';
   contrasenia : string = '';
- 
- 
+
+
   login(): void {
     this.authService.login(this.usuario,this.contrasenia).subscribe((response: any) => {
-      console.log(localStorage.getItem('user'))
+      console.log(localStorage.getItem('currentUser'))
       this.router.navigate(['/Equipos'])
     }, (error: any) => {
       console.error(error);
     });
   }
 }
+ 
