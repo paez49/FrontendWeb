@@ -1,54 +1,50 @@
-
 <header>
   <h1 class="titulo">MIS INVITACIONES</h1>
 </header>
 <div class="base">
-<div class="tablaequipos">
+  <div class="tablaequipos">
     <div class="equipo">
       <mat-table [dataSource]="dataSource" matSort>
 
-    <div class="columnaequipo">
-      <!-- Columna de nombre -->
-      <ng-container matColumnDef="Equipo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Equipo}} </mat-cell>
-      </ng-container>
-    </div>
+        <div class="columnaequipo">
+          <!-- Columna de nombre -->
+          <ng-container matColumnDef="Equipo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Equipo}} </mat-cell>
+          </ng-container>
+        </div>
 
-      <!-- Columna de siglas -->
-      <ng-container matColumnDef="Siglas">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Siglas </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Siglas}} </mat-cell>
-      </ng-container>
+        <!-- Columna de siglas -->
+        <ng-container matColumnDef="Siglas">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Siglas </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.Siglas}} </mat-cell>
+        </ng-container>
 
-      <!-- Columna de selección -->
-      <ng-container matColumnDef="select">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()">
-          </mat-checkbox>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <mat-checkbox (click)="$event.stopPropagation()"
-                        (change)="$event ? selection.toggle(row) : null"
-                        [checked]="selection.isSelected(row)">
-          </mat-checkbox>
-        </mat-cell>
-      </ng-container>
-      <!-- Agrega las columnas a la tabla -->
-    <div class="columnastabla">
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"
-              (click)="selection.toggle(row)">
-      </mat-row>
+        <!-- Columna de selección -->
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+        <!-- Agrega las columnas a la tabla -->
+        <div class="columnastabla">
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+          </mat-row>
+        </div>
+      </mat-table>
     </div>
-    </mat-table>
-  </div>
-  <mat-card-actions>
+    <mat-card-actions class="botones">
       <button mat-button (click)="onAceptar()" class="greenButtonMargin">Aceptar</button>
       <button mat-button (click)="onRechazar()" class="redButtonMargin">Rechazar</button>
-  </mat-card-actions>
+    </mat-card-actions>
 
-</div>
+  </div>
 </div>
