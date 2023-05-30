@@ -1,14 +1,16 @@
+<div class="titulo">
+  <a>Equipos</a>
+</div>
 <div class="teams">
-<a>Equipos</a>
-<button mat-fab extended class="addTeam" (click)="openDialog()">Crear nuevo equipo</button>
+  <div class="botones">
+    <button mat-fab extended class="addTeam" (click)="openDialog()">Crear nuevo equipo</button>
+    <button mat-fab extended class="addTeam" (click)="logout()">Salir</button>
+  </div>
 
-<div class="myTeams">
-  <button mat-fab extended *ngFor="let item of items" [routerLink]="['/Equipo', item.Siglas]" class="team teamDisplay" (click)="guardarIdEquipo(item.id)">
-    <h3>{{item.Equipo}} {{item.Siglas}}</h3>
-  </button>
+  <div class="myTeams">
+    <button mat-fab extended *ngFor="let item of items" [routerLink]="['/Equipo', item.Siglas]" class="team teamDisplay"
+      (click)="guardarIdEquipo(item.id)">
+      <h3>{{item.Equipo}} {{item.Siglas}}</h3>
+    </button>
+  </div>
 </div>
-
-
-<button mat-fab extended class="addTeam" (click)="logout()">Salir</button>
-</div>
-

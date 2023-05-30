@@ -1,26 +1,31 @@
-.teams {
-  display: flex;
-  flex-direction: column;
-  margin: 50px;
-  padding: auto;
-  overflow-y: scroll;
 
-  /* Agrega una barra de desplazamiento vertical */
+.titulo{
+  background-color: rgba(82, 75, 94, 0.7);
+  transition: background-color 0.5s ease;
+  backdrop-filter: blur(5px);
+  height: 8%;
+
   a {
-    margin-bottom: 30px;
-    color: rgb(137, 136, 136);
+    padding-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(235, 241, 241);
     font-size: 40px;
   }
 }
 
-.team {
+.teams {
+  justify-content:center;
+  align-items: center;
   color: rgba(255, 255, 255, 0.8);
   display: flex;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(41, 29, 61, 0.7);
   backdrop-filter: blur(5px);
   transition: background-color 0.5s ease;
-
+  max-height: 80%;
+  overflow-y: auto;
   h3 {
     margin: 10px;
     font-family: 'Bangers', cursive;
@@ -32,10 +37,9 @@
   border-radius: 5px;
   align-items: center;
   display: flex;
+  background-color: #5749a1;
   flex-direction: row;
   padding: 0px 1.8rem;
-  align-items: center;
-
   h3 {
     margin: 10px;
     font-family: 'Bangers', cursive;
@@ -43,24 +47,34 @@
 }
 
 .myTeams {
-  width: auto;
+  width: 80%;
   display: grid;
   text-align: center;
   align-items: center;
   gap: 3rem;
   border-radius: 0.7rem;
-  margin: 1.8rem auto;
+  margin: 0 auto; /* Modificado */
+  top: 150px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+
+.botones{
+  display: flex;
+  flex-direction: column;
 }
 
 
 .addTeam {
   border-radius: 5px;
-  width: auto;
   max-width: 100%;
   width: 230px;
-  background: #83CE95;
+  background: #e30b0b;
   color: white;
   margin: 50px 0px;
+  margin-left: 20px;
 }
 
 
@@ -86,6 +100,6 @@
   }
 
   .teamDisplay:hover {
-    background-color: red;
+    background-color: rgb(44, 25, 60);
   }
 }
