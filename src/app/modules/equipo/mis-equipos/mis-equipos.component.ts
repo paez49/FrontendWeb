@@ -42,11 +42,17 @@ ngOnInit(): void {
   }
 
 
-  guardarIdEquipo(id: number) {
+  guardarIdEquipo(id: number, Equipo: string,  Siglas: string) {
     localStorage.setItem('equipoId', JSON.stringify(id));
+    localStorage.setItem('equipoNombre', JSON.stringify(Equipo));
+    localStorage.setItem('equipoSigla', JSON.stringify(Siglas));
     const equipoId = localStorage.getItem('equipoId');
+    const equipoNombre = localStorage.getItem('equipoNombre');
+    const equipoSigla = localStorage.getItem('equipoSigla');
     if (equipoId) {
       const id = JSON.parse(equipoId);
+      console.log(equipoNombre);
+      console.log(equipoSigla);
       console.log(id);
     }
   }
