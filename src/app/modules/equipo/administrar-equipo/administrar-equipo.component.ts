@@ -61,19 +61,20 @@ export class AdministrarEquipoComponent implements OnInit {
     }
 
     if (equipoId) {
-      this.usuarioService.getUsuariosNoEnEquipo(parseInt(equipoId)).subscribe((users) => {
+      this.usuarioService.getUsuariosNoEnEquipo(parseInt(equipoId)).subscribe((users: Usuario[]) => {
         this.users = users;
-        users.forEach((Element: any) => {  // Añadido el tipo 'any' a la variable
+        users.forEach((element: Usuario) => {
           var obj = {
-            username: Element.username,
-            email: Element.email
+            username: element.username,
+            email: element.email
           }
           this.items.push(obj);
-        })
+        });
     
         this.dataSourceUsuarios = new MatTableDataSource<Item>(this.items);
-      })
-    }    
+      });
+    }
+        
 
   }
 
