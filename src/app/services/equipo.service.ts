@@ -27,4 +27,8 @@ export class EquipoService {
     return this.http.post(`${environment.backendAPI}/equipos/create/${idUsuario}`,equipo)
     .pipe(map(response => response as Equipo));
   }
+  actualizarEquipo(idEquipo:number,equipo:Equipo):Observable<Equipo>{
+    return this.http.put<Equipo>(`${environment.backendAPI}/equipos/${idEquipo}`,equipo)
+    .pipe(map(response => response as Equipo));
+  }
 }
