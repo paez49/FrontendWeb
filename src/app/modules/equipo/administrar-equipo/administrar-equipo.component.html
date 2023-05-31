@@ -76,7 +76,7 @@
         <h2>Invitar Jugadores</h2>
         <div class="tablaequipos" layout-fill>
           <div class="equipo">
-            <mat-table [dataSource]="dataSource" class="tabla" matSort>
+            <mat-table [dataSource]="dataSourceUsuarios" class="tabla" matSort>
               <!-- Columna de nombre -->
               <ng-container matColumnDef="username">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> username</mat-header-cell>
@@ -103,7 +103,7 @@
               </ng-container>
               <!-- Agrega las columnas a la tabla -->
               <div class="columnastabla">
-                <mat-header-row *matHeaderRowDef="displayedColumns" style="color:ghostwhite;"></mat-header-row>
+                <mat-header-row *matHeaderRowDef="displayedColumnsUser" style="color:ghostwhite;"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"
                   style="color:ghostwhite;">
                 </mat-row>
@@ -114,7 +114,6 @@
 
           <mat-card-actions>
             <button mat-button (click)="onInvitar()" class="greenButtonMargin">Invitar</button>
-            <button mat-button (click)="onCancelar()" class="redButtonMargin">Cancelar</button>
           </mat-card-actions>
         </div>
 

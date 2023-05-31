@@ -1,7 +1,7 @@
 import { Equipo } from "./equipo"
-import { User } from "./usuario"
+import { Usuario } from "./usuario"
 export class Solicitud{
     id!: number
     team!:Equipo
-    usuario!:User
+    usuario!:Usuario
 }

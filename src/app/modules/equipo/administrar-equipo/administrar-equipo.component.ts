@@ -7,8 +7,10 @@ import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
 import { AuthService } from 'src/app/services/auth.service';
 import { EquipoService } from 'src/app/services/equipo.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
 import { Solicitud } from 'src/app/shared/model/solicitud';
+import { Usuario } from 'src/app/shared/model/usuario';
 
 const moment = _moment;
 export interface Item {
@@ -21,13 +23,16 @@ export interface Item {
   styleUrls: ['./administrar-equipo.component.scss']
 })
 export class AdministrarEquipoComponent implements OnInit {
-  constructor(private solicitudService: SolicitudService, private authService: AuthService, private equipoService: EquipoService, private router: Router) { }
+  constructor(private solicitudService: SolicitudService, private authService: AuthService, private equipoService: EquipoService, private router: Router, private usuarioService: UsuarioService) { }
+  users: Usuario[] = [];
   solicitudes: Solicitud[] = [];
   date = new FormControl(moment([2017, 0, 1]));
   date7: Date | undefined
   items: Item[] = [];
   displayedColumns: string[] = ['username', 'email', 'select'];
+  displayedColumnsUser: string[] = ['username', 'email', 'select'];
   dataSource!: MatTableDataSource<Item>;
+  dataSourceUsuarios!: MatTableDataSource<Item>;
   selection = new SelectionModel<Item>(true, []);
   ngOnInit(): void {
     const equipoId = localStorage.getItem('equipoId');
@@ -54,6 +59,22 @@ export class AdministrarEquipoComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Item>(this.items);
       })
     }
+
+    if (equipoId) {
+      this.usuarioService.getUsuariosNoEnEquipo(parseInt(equipoId)).subscribe((users) => {
+        this.users = users;
+        users.forEach((Element: any) => {  // Añadido el tipo 'any' a la variable
+          var obj = {
+            username: Element.username,
+            email: Element.email
+          }
+          this.items.push(obj);
+        })
+    
+        this.dataSourceUsuarios = new MatTableDataSource<Item>(this.items);
+      })
+    }    
+
   }
 
 
@@ -126,9 +147,6 @@ export class AdministrarEquipoComponent implements OnInit {
       });
 
     }
-  }
-  onCancelar() {
-    this.selection.clear();
   }
 }
 
