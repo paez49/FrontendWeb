@@ -21,7 +21,6 @@
   color: rgba(255, 255, 255, 0.8);
   display: flex;
   text-align: center;
-  background-color: rgba(41, 29, 61, 0.7);
   backdrop-filter: blur(5px);
   transition: background-color 0.5s ease;
   max-height: 80%;
@@ -30,6 +29,7 @@
     margin: 10px;
     font-family: 'Bangers', cursive;
   }
+  
 }
 
 .teamDisplay {
