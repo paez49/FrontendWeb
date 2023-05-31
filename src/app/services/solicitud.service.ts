@@ -27,9 +27,8 @@ export class SolicitudService {
     return this.http.get<Solicitud[]>(`${environment.backendAPI}/solicitudes/get/${idEquipo}`)
   }
   //Equipos -> AdminEquipo -> Lista solicitudes pendientes -> Boton aceptar
-  acceptSolicitud(solicitud:Solicitud):Observable<any>{
-    const body ={solicitud}
-    return this.http.put(`${environment.backendAPI}/solicitudes/accept`,body)
+  acceptSolicitud(idSolicitud:number):Observable<any>{
+    return this.http.put(`${environment.backendAPI}/solicitudes/accept/${idSolicitud}`,{})
   }
     //Equipos -> AdminEquipo -> Lista solicitudes pendientes -> Boton rechazar
   denySolicitud(idSolicitud:number):Observable<any>{

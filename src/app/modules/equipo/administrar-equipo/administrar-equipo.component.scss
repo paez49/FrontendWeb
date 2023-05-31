@@ -108,8 +108,8 @@ $font-color: hsl(0, 0%, 100%);
           border: none;
           border-radius: 5px;
           margin-bottom: 20px;
-          color: $primary-color;
-          background-color: black;
+          color: black;
+          background-color: rgb(255, 255, 255);
           font-weight: bold;
           font-size: 24px;
         }

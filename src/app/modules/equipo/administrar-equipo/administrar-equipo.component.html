@@ -34,39 +34,43 @@
           <div class="equipo">
             <mat-table [dataSource]="dataSource" class="tabla" matSort>
               <!-- Columna de nombre -->
+              <ng-container matColumnDef="idSolicitud">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID Invitación </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.idSolicitud}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="idUsuario">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID Usuario </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.idUsuario}} </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="username">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre usuario </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
               </ng-container>
               <!-- Columna de edad -->
               <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
               </ng-container>
-
+              
               <!-- Columna de IDD -->
-              <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-              </ng-container>
+              
+             
+              
               <!-- Columna de selección -->
               <ng-container matColumnDef="select">
                 <mat-header-cell *matHeaderCellDef>
-                  <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-                  </mat-checkbox>
+                 
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectionSolicitud.toggle(row) : null"
+                    [checked]="selectionSolicitud.isSelected(row)">
                   </mat-checkbox>
                 </mat-cell>
               </ng-container>
               <!-- Agrega las columnas a la tabla -->
               <div class="columnastabla">
                 <mat-header-row *matHeaderRowDef="displayedColumns" style="color:ghostwhite;"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectionSolicitud.toggle(row)"
                   style="color:ghostwhite;">
                 </mat-row>
 
@@ -85,26 +89,23 @@
             <mat-table [dataSource]="dataSourceUsuarios" class="tabla" matSort>
               <!-- Columna de nombre -->
               <ng-container matColumnDef="username">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> username</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre usuario</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
               </ng-container>
               <!-- Columna de edad -->
               <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
               </ng-container>
               <!-- Columna de IDD -->
               <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID Usuario </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
               </ng-container>
               <!-- Columna de selección -->
               <ng-container matColumnDef="select">
                 <mat-header-cell *matHeaderCellDef>
-                  <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-                  </mat-checkbox>
+                 
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
                   <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
@@ -115,7 +116,7 @@
               <!-- Agrega las columnas a la tabla -->
               <div class="columnastabla">
                 <mat-header-row *matHeaderRowDef="displayedColumnsUser" style="color:ghostwhite;"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"
+                <mat-row *matRowDef="let row; columns: displayedColumnsUser;" (click)="selection.toggle(row)"
                   style="color:ghostwhite;">
                 </mat-row>
 

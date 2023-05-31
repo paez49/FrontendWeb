@@ -21,6 +21,14 @@ export interface Item {
   email: string;
   id: number;
 }
+
+export interface ItemSolicitud{
+  username: string;
+  email: string;
+  idUsuario: number;
+  idSolicitud:number;
+
+}
 @Component({
   selector: 'app-my-component',
   templateUrl: './administrar-equipo.component.html',
@@ -33,11 +41,13 @@ export class AdministrarEquipoComponent implements OnInit {
   date = new FormControl(moment([2017, 0, 1]));
   date7: Date | undefined
   items: Item[] = [];
-  displayedColumns: string[] = ['username', 'email','id', 'select'];
-  displayedColumnsUser: string[] = ['username', 'email','id', 'select'];
-  dataSource!: MatTableDataSource<Item>;
+  itemsSolicitud: ItemSolicitud[] = []
+  displayedColumns: string[] = ['idSolicitud','idUsuario','username', 'email','select'];
+  displayedColumnsUser: string[] = ['id','username', 'email', 'select'];
+  dataSource!: MatTableDataSource<ItemSolicitud>;
   dataSourceUsuarios!: MatTableDataSource<Item>;
   selection = new SelectionModel<Item>(true, []);
+  selectionSolicitud = new SelectionModel<ItemSolicitud>(true, []);
   ngOnInit(): void {
     const equipoId = localStorage.getItem('equipoId');
     const equipoNombre = localStorage.getItem('equipoNombre');
@@ -54,14 +64,16 @@ export class AdministrarEquipoComponent implements OnInit {
         this.solicitudes = solicitudes;
         solicitudes.forEach(Element => {
           var obj = {
+
             username: Element.usuario.username,
             email: Element.usuario.email,
-            id: Element.usuario.id
+            idUsuario: Element.usuario.id,
+            idSolicitud: Element.id
           }
-          this.items.push(obj);
+          this.itemsSolicitud.push(obj);
         })
 
-        this.dataSource = new MatTableDataSource<Item>(this.items);
+        this.dataSource = new MatTableDataSource<ItemSolicitud>(this.itemsSolicitud);
       })
     }
 
@@ -89,7 +101,7 @@ export class AdministrarEquipoComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.dataSource.data.forEach(row => this.selectionSolicitud.select(row));
   }
 
   // Implementa el método para verificar si todos los items están seleccionados
@@ -149,37 +161,13 @@ export class AdministrarEquipoComponent implements OnInit {
 }
   }
   onAceptar() {
-
-    const equipoNombreInput = document.getElementById('nombreEquipo') as HTMLInputElement;
-    const equipoSiglaInput = document.getElementById('siglas') as HTMLInputElement;
-
-    const nombreEquipo = equipoNombreInput.value;
-    const siglas = equipoSiglaInput.value;
     const equipoId = localStorage.getItem('equipoId');
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Aceptado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.username));
-    } else {
-      this.selection.selected.forEach(element => {
-        console.log(`Aceptado: ${element.username}`);
+    
+      this.selectionSolicitud.selected.forEach(element => {
+        
         if( equipoId != null){
-          const Team  = new Equipo()
-          Team.id = Number(equipoId)
-          Team.nombreEquipo = nombreEquipo;
-          Team.siglas = siglas
 
-          const User  = new Usuario()
-          User.id = element.id
-          User.email = element.email
-          User.username = element.username
-
-          const inv = new Invitacion()
-
-          inv.equipo = Team
-          inv.usuario = User
-
-            console.log(Team)
-          this.invitacionService.acceptInvitation(inv).subscribe(
+          this.solicitudService.acceptSolicitud(Number(element.idSolicitud)).subscribe(
             (a : any) => {
               console.log(a);
             },
@@ -187,32 +175,48 @@ export class AdministrarEquipoComponent implements OnInit {
             }
           )
 
-
     }
 
       });
-    }
+    
   }
   onInvitar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Invitados todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.username));
-    } else {
-      this.selection.selected.forEach(element => {
-        console.log(`Invitado: ${element.username}`);
-      });
-    }
+    const equipoId = localStorage.getItem('equipoId');
+
+    this.selection.selected.forEach(element =>{
+      if( equipoId != null){
+
+        this.invitacionService.crearInvitacion(Number(element.id),Number(equipoId)).subscribe(
+          (a : any) => {
+            console.log(a);
+          },
+          (error) => {
+          }
+        )
+
+  }
+    })
   }
   onRechazar() {
-    if (this.selection.selected.length === this.dataSource.data.length) {
-      console.log('Rechazado para todos los elementos seleccionados:');
-      this.selection.selected.forEach((row) => console.log(row.username));
-    } else {
-      this.selection.selected.forEach(element => {
-        console.log(`Rechazado: ${element.username}`);
-      });
+    const equipoId = localStorage.getItem('equipoId');
+    
+      this.selectionSolicitud.selected.forEach(element => {
+  
+        
+        if( equipoId != null){
+
+          this.solicitudService.denySolicitud(Number(element.idSolicitud)).subscribe(
+            (a : any) => {
+              console.log(a);
+            },
+            (error) => {
+            }
+          )
 
     }
+
+      });
+    
   }
 }
 

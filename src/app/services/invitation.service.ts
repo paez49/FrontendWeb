@@ -19,8 +19,7 @@ export class InvitationService {
     return this.http.put(`${environment.backendAPI}/invitaciones/accept`,invitacion);
   }
   crearInvitacion(idUsuario: number, idEquipo: number): Observable<any> {
-    const body = {idUsuario,idEquipo}
-    return this.http.post(`${environment.backendAPI}/invitaciones/add`,body)
+    return this.http.post(`${environment.backendAPI}/invitaciones/add/user=${idUsuario}/equipo=${idEquipo}`,{})
   }
 
 }
