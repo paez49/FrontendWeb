@@ -11,8 +11,8 @@ export class SolicitudService {
   //Lista equipos -> Solicitar unirse boton
   constructor(private http: HttpClient){}
   createSolicitud(idUsuario: number,idEquipo:number):Observable<any>{
-    const body = {idUsuario,idEquipo}
-    return this.http.post(`${environment.backendAPI}/solicitudes/add`,body)
+    
+    return this.http.post(`${environment.backendAPI}/solicitudes/add/user=${idUsuario}/equipo=${idEquipo}`,{})
   }
   /* Cuando se consultan todos los equipos participes, en realidad lo que llegan son objetos de Equipo
      Entonces en esta parte la idea sería consultar al equipo y luego llamar a este servicio,

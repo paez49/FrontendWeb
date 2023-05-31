@@ -3,10 +3,12 @@ import {MatTableDataSource} from "@angular/material/table";
 import {SelectionModel} from "@angular/cdk/collections";
 import { EquipoService } from 'src/app/services/equipo.service';
 import { Equipo } from 'src/app/shared/model/equipo';
+import { Usuario } from 'src/app/shared/model/usuario';
+import { SolicitudService } from 'src/app/services/solicitud.service';
 interface Item {
   Equipo: string;
   Siglas: string;
-  id: number;
+  idEquipo: number;
 }
 @Component({
   selector: 'app-lista-equipos',
@@ -15,13 +17,13 @@ interface Item {
 })
 
 export class ListaEquiposComponent implements  OnInit{
-  constructor(private equipoService: EquipoService) { }
+  constructor(private equipoService: EquipoService,private solicitudService:SolicitudService) { }
   equipos: Equipo[] = []
   items: Item[] = [];
   dataSource!: MatTableDataSource<Item>;
   selection = new SelectionModel<Item>(true, []);
   // Define las columnas a mostrar
-  displayedColumns: string[] = ['Equipo', 'Siglas','select'];
+  displayedColumns: string[] = ['idEquipo','Equipo', 'Siglas','select'];
 
   ngOnInit(): void {
     const usuarioJSON = localStorage.getItem('currentUser') ?? "";
@@ -33,7 +35,7 @@ export class ListaEquiposComponent implements  OnInit{
         var obj = {
           Equipo: element.nombreEquipo,
           Siglas: element.siglas,
-          id: element.id
+          idEquipo: element.id
         };
         this.items.push(obj)
       });
@@ -54,11 +56,21 @@ export class ListaEquiposComponent implements  OnInit{
     return numSelected === numRows;
   }
 
-  onAceptar() {
-      this.selection.selected.forEach((row) => console.log("aceptado ",row.Equipo));
-  }
+  onSolicitarUnirse() {
+    const currentUserString = localStorage.getItem('currentUser');
+    const currentUser: Usuario = JSON.parse(currentUserString!);
 
-  onRechazar() {
-      this.selection.selected.forEach((row) => console.log("rechazado ",row.Equipo));
+      this.selection.selected.forEach((row) => 
+      this.solicitudService.createSolicitud(currentUser.id,row.idEquipo).subscribe(
+        (message) => {
+          console.log(message)
+          //location.reload();
+        },
+        (error) => {
+          console.error( error);
+          //location.reload();
+        }
+      )
+      );
   }
 }

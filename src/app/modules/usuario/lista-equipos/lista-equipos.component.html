@@ -9,6 +9,10 @@
 
     <div class="columnaequipo">
       <!-- Columna de nombre -->
+      <ng-container matColumnDef="idEquipo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID Equipo </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.idEquipo}} </mat-cell>
+      </ng-container>
       <ng-container matColumnDef="Equipo">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Equipo}} </mat-cell>
@@ -24,10 +28,6 @@
       <!-- Columna de selección -->
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef>
-          <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()">
-          </mat-checkbox>
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <mat-checkbox (click)="$event.stopPropagation()"
@@ -46,7 +46,7 @@
     </mat-table>
   </div>
   <mat-card-actions class="botones">
-      <button mat-button (click)="onAceptar()" class="blueButtonMargin">Solicitar Unirse</button>
+      <button mat-button (click)="onSolicitarUnirse()" class="blueButtonMargin">Solicitar Unirse</button>
   </mat-card-actions>
 
 </div>
