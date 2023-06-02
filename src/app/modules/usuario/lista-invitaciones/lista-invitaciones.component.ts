@@ -66,13 +66,16 @@ export class ListaInvitacionesComponent implements OnInit {
         this.invitationService.acceptInvitation(invitacion).subscribe(
           () => {
             console.log(`Invitación Aceptada con ID: ${id}`);
+            location.reload();
           },
           (error) => {
             console.error('Ocurrió un error al Aceptar la invitación:', error);
+            location.reload();
           }
         );
       } else {
         console.error('invitacion no está definido');
+        location.reload();
       }
     });
   }
@@ -84,9 +87,11 @@ export class ListaInvitacionesComponent implements OnInit {
       this.invitationService.denyInvitationById(id).subscribe(
         () => {
           console.log(`Invitación denegada con ID: ${id}`);
+          location.reload();
         },
         (error) => {
           console.error('Ocurrió un error al denegar la invitación:', error);
+          location.reload();
         }
       );
     });

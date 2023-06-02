@@ -4,7 +4,8 @@ import {HttpClient,HttpHeaders} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { AuthenticationResponse } from '../shared/model/auth/authentication.response';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import {User} from '../shared/model/usuario'
+import {Usuario} from '../shared/model/usuario'
+import { RegisterRequest } from '../shared/model/auth/register.request';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,8 +25,8 @@ export class AuthService {
       this.authenticationResponseSubject = new BehaviorSubject<AuthenticationResponse>(JSON.parse(user))
     }
   }
-  public get currentUserValue(): User {
-    let user = new User
+  public get currentUserValue(): Usuario {
+    let user = new Usuario
     user.id = this.authenticationResponseSubject.value.id
     user.email = this.authenticationResponseSubject.value.email
     user.username = this.authenticationResponseSubject.value.username
@@ -33,6 +34,9 @@ export class AuthService {
   }
   isLoggedIn(){
    return this.currentUserValue.id !== 0
+  }
+  register(registerData: RegisterRequest): Observable<any> {
+    return this.http.post<any>(`${environment.backendAPI}/api/auth/register`, registerData)
   }
 
   login(username: string, password: string) {
